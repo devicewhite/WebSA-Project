@@ -4,41 +4,51 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.provider.Settings;
+import android.widget.Toast;
 
 public class Beginner {
-	private static final int OVERLAY_PERMISSION_REQUEST_CODE = 123;
+	public static final int OVERLAY_PERMISSION_REQUEST_CODE = 123;
+	public Activity activity = null;
 
 	public Beginner(Activity activity) {
-		checkSdkVersion(activity);
+		this.activity = activity;
+		checkSdkVersion();
 	}
 	
-	private void checkSdkVersion(Activity activity) {
+	private void checkSdkVersion() {
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-			checkOverlayPermission(ativity);
+			checkOverlayPermission();
 		} else {
-			shutDownApp(activity);
+			shutDownApp();
 		}
 	}
 
-	public void checkOverlayPermission(Activity Activity) {
+	public void checkOverlayPermission() {
 		if(Settings.canDrawOverlays(activity)) {
-			requestOverlayPermission(ativity);
+			Handler handler = new Handler();
+			handler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					startWebSA();
+				}
+			}, 1500);
 		} else {
-			startWebSA(ativity);
+			requestOverlayPermission();
 		}
 	}
 
-	private void requestOverlayPermission(Activity Activity) {
+	private void requestOverlayPermission() {
 		Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + activity.getPackageName()));
 		activity.startActivityForResult(intent, OVERLAY_PERMISSION_REQUEST_CODE);
 	}
 	
-	private void startWebSA(Activity activity) {
+	private void startWebSA() {
 		new WebSA(activity);
 	}
 
-	private void shutDownApp(Activity activity) {
+	private void shutDownApp() {
 		activity.finishAffinity();
 		System.exit(0);
 	}
