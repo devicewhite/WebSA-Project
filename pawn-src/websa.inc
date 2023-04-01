@@ -32,6 +32,7 @@
 		if(websa_player_has_mod(player_id))
 		{
 			WebSA_login[playerid] = websa_create_browser(playerid, "http://localhost:8080/login.html", false, true);
+			Error_count[playerid] = 0;
 		}
 		return 1;
 	}
@@ -48,7 +49,7 @@
 			printf("The player %s(%d) just done %s.", PName(player_id), player_id, (loginState ? "login" : "register"));
 			websa_delete_browser(player_id, WebSA_login[player_id]);
 			Error_count[player_id] = 0;
-			// Spawn Player here
+			// Spawn  here
 		}
 		else
 		{
