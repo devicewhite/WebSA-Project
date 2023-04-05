@@ -22,7 +22,7 @@ Com sua flexibilidade e recursos avançados, o WebSA tem o potencial de elevar a
 
 <b>Em desenvolvimento...</b>
 
-![img-01](https://github.com/Device-Black/WebSA-Project/blob/DeviceBlack/img-01.png)
+![hud_test](https://github.com/Device-Black/WebSA-Project/blob/DeviceBlack/hud_test.png)
 
 <hr>
 
