@@ -53,6 +53,7 @@ public class WebSA
 	{
 		WebView webView = new WebView(currentActivity);
 		webView.setWebViewClient(webViewClient);
+		// incompleto por estar sobre testes 
 		return webView;
 	}
 
